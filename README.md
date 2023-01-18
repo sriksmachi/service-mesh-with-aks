@@ -53,11 +53,20 @@ kubectl apply -f https://raw.githubusercontent.com/openservicemesh/osm-docs/rele
 Split the traffic 50-50
 ```
 kubectl apply -f https://raw.githubusercontent.com/openservicemesh/osm-docs/release-v1.2/manifests/split/traffic-split-50-50.yaml
-
 ```
 
 
 
+RESET
+
+```
+kubectl patch meshconfig osm-mesh-config -n kube-system -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":true}}}'  --type=merge
+
+kubectl delete -f https://raw.githubusercontent.com/openservicemesh/osm-docs/release-v1.2/manifests/access/traffic-access-v1.yaml
+
+kubectl delete -f https://raw.githubusercontent.com/openservicemesh/osm-docs/release-v1.2/manifests/apps/bookstore-v2.yaml
+
+```
 
 
 
